@@ -1,0 +1,7 @@
+/* Define your theme modifications inside next mixin */
+@mixin com_haulmont_addon_samplebase-halo-ext {
+
+    .info-link.v-button .v-icon {
+        font-size: 50px;
+    } 
+}

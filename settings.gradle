@@ -1,0 +1,7 @@
+rootProject.name = 'sample-base'
+include(':sample-base-global', ':sample-base-core', ':sample-base-gui', ':sample-base-web', ':sample-base-web-themes')
+project(':sample-base-global').projectDir = new File(settingsDir, 'modules/global')
+project(':sample-base-core').projectDir = new File(settingsDir, 'modules/core')
+project(':sample-base-gui').projectDir = new File(settingsDir, 'modules/gui')
+project(':sample-base-web').projectDir = new File(settingsDir, 'modules/web')
+project(':sample-base-web-themes').projectDir = new File(settingsDir, 'modules/web/themes')

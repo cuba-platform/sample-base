@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://caption"
+        class="com.haulmont.addon.samplebase.web.screens.InfoFrame"
+        messagesPack="com.haulmont.addon.samplebase.web.screens">
+    <dialogMode height="600"
+                width="800"/>
+    <layout>
+        <hbox expand="infoLab"
+              margin="true"
+              spacing="true"
+              width="100%">
+            <vbox width="80px">
+                <linkButton id="infoLinkBtn"
+                            align="MIDDLE_CENTER"
+                            description="Information on the opened screen"
+                            icon="font-icon:INFO_CIRCLE"
+                            stylename="info-link"/>
+            </vbox>
+            <label id="infoLab"
+                   value="README not found"/>
+        </hbox>
+    </layout>
+</window>

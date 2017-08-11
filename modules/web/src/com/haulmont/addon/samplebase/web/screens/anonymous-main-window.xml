@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        class="com.haulmont.addon.samplebase.web.screens.AnonymousMainWindow"
+        extends="/com/haulmont/cuba/web/app/mainwindow/mainwindow.xml"
+        messagesPack="com.haulmont.addon.samplebase.web.screens"
+        xmlns:ext="http://schemas.haulmont.com/cuba/window-ext.xsd"
+        xmlns:main="http://schemas.haulmont.com/cuba/mainwindow.xsd">
+    <dialogMode height="600"
+                width="800"/>
+    <layout>
+        <frame id="infoFrame"
+               ext:index="0"
+               screen="info-frame"/>
+        <hbox id="titleBar">
+            <embedded id="logoImage"
+                      visible="false"/>
+            <main:userIndicator id="userIndicator"
+                                visible="false"/>
+            <main:timeZoneIndicator id="timeZoneIndicator"
+                                    visible="false"/>
+            <hbox id="mainButtonsBox">
+                <main:newWindowButton id="newWindowButton"
+                                      visible="false"/>
+                <main:logoutButton id="logoutButton"
+                                   visible="false"/>
+            </hbox>
+        </hbox>
+    </layout>
+</window>
