@@ -1,7 +1,24 @@
 /* Define your theme modifications inside next mixin */
 @mixin com_haulmont_addon_samplebase-halo-ext {
 
-    .info-link.v-button .v-icon {
+    .c-breadcrumbs .v-label, .c-breadcrumbs .v-button-caption {
+        font-weight: bold;
+    }
+
+    .info-box {
+        background-color: #006dc9;
+        color: #eee;
+    }
+
+    .info-box h1, .info-box h2, .info-box h3 {
+        color: #eee;
+    }
+
+    .info-box a {
+        color: #eee;
+    }
+
+    .v-caption-info-icon .v-icon {
         font-size: 50px;
     } 
 }

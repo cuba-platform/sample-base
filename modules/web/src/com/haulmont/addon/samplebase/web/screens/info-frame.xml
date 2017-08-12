@@ -6,19 +6,23 @@
     <dialogMode height="600"
                 width="800"/>
     <layout>
-        <hbox expand="infoLab"
-              margin="true"
+        <hbox expand="infoLab_vbox"
+              margin="true,false,false,true"
               spacing="true"
+              stylename="info-box"
               width="100%">
-            <vbox width="80px">
-                <linkButton id="infoLinkBtn"
-                            align="MIDDLE_CENTER"
-                            description="Information on the opened screen"
-                            icon="font-icon:INFO_CIRCLE"
-                            stylename="info-link"/>
+            <label align="MIDDLE_CENTER"
+                   icon="font-icon:INFO_CIRCLE"
+                   stylename="info-icon"/>
+            <vbox id="infoLab_vbox"
+                  expand="infoLab">
+                <label id="infoLab"
+                       value="README not found"
+                       width="100%"/>
+                <flowBox id="linksBox"
+                         height="35px"
+                         spacing="true"/>
             </vbox>
-            <label id="infoLab"
-                   value="README not found"/>
         </hbox>
     </layout>
 </window>

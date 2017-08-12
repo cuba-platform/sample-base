@@ -8,4 +8,6 @@
     <!-- Annotation-based beans -->
     <context:component-scan base-package="com.haulmont.addon.samplebase"/>
 
+    <bean id="cuba_WebWindowManager" class="com.haulmont.addon.samplebase.web.BaseWindowManager" scope="prototype"/>
+
 </beans>

@@ -1,0 +1,12 @@
+<sample-info>
+    <doc-root value="https://doc.cuba-platform.com/manual-6.6/"/>
+    <file-root value="https://github.com/cuba-platform/sample-screen-manipulation/blob/master/"/>
+    <screen id="sec$User.browse">
+        <doc caption="Documentation" page="init_values_in_class.html"/>
+        <link caption="Some link" url="https://doc.cuba-platform.com/manual-6.6/init_values_in_class.html"/>
+        <descriptor/>
+        <controller/>
+        <file path="com/haulmont/cuba/gui/app/security/user/browse/user-lookup.xml"/>
+        <file path="com/haulmont/cuba/gui/app/security/user/browse/UserLookup.java"/>
+    </screen>
+</sample-info>

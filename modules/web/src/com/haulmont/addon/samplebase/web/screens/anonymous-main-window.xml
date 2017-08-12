@@ -19,8 +19,6 @@
             <main:timeZoneIndicator id="timeZoneIndicator"
                                     visible="false"/>
             <hbox id="mainButtonsBox">
-                <main:newWindowButton id="newWindowButton"
-                                      visible="false"/>
                 <main:logoutButton id="logoutButton"
                                    visible="false"/>
             </hbox>
