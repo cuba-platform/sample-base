@@ -21,10 +21,6 @@
                   value="+com/haulmont/addon/samplebase/spring.xml"/>
         <property name="cuba.mainMessagePack"
                   value="+com.haulmont.addon.samplebase.core"/>
-        <artifact classifier="db"
-                  configuration="dbscripts"
-                  ext="zip"
-                  name="sample-base-core"/>
     </module>
     <module blocks="web,desktop"
             dependsOn="global"
@@ -42,7 +38,7 @@
                   ext="zip"
                   name="sample-base-web"/>
         <artifact configuration="themes"
-                  name="web-themes"/>
+                  name="sample-base-web-themes"/>
         <property name="cuba.springContextConfig"
                   value="+com/haulmont/addon/samplebase/web-spring.xml"/>
         <property name="cuba.dispatcherSpringContextConfig"
@@ -55,6 +51,8 @@
                   value="+com/haulmont/addon/samplebase/web-permissions.xml"/>
         <property name="cuba.mainMessagePack"
                   value="+com.haulmont.addon.samplebase.web"/>
+        <property name="cuba.web.appWindowMode"
+                  value="SINGLE"/>
     </module>
     <module name="web-themes">
         <artifact name="sample-base-web-themes"/>

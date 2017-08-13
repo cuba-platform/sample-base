@@ -17,7 +17,7 @@
             <vbox id="infoLab_vbox"
                   expand="infoLab">
                 <label id="infoLab"
-                       value="README not found"
+                       value="README.md not found in the root package"
                        width="100%"/>
                 <flowBox id="linksBox"
                          height="35px"

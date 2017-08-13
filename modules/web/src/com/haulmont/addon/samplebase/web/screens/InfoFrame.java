@@ -53,8 +53,6 @@ public class InfoFrame extends AbstractFrame {
     private SampleConfig config;
 
     private Element infoConfigRootEl;
-    private String docRoot;
-    private String fileRoot;
 
     @Override
     public void init(Map<String, Object> params) {
@@ -66,12 +64,14 @@ public class InfoFrame extends AbstractFrame {
         List<String> rootPackages = metadata.getRootPackages();
         if (rootPackages.isEmpty()) {
             log.debug("Empty rootPackages");
+            return;
         }
         String rootPackage = rootPackages.get(rootPackages.size() - 1);
         String resourcePath = "/" + rootPackage.replace('.', '/') + "/README.md";
         InputStream inputStream = getClass().getResourceAsStream(resourcePath);
         if (inputStream == null) {
             log.debug("Resource {} not found", resourcePath);
+            return;
         }
 
         StringBuilder sb = new StringBuilder();
@@ -82,6 +82,7 @@ public class InfoFrame extends AbstractFrame {
                 }
             } catch (IOException e) {
                 log.error("Error reading resource {}", resourcePath, e);
+                return;
             }
         } finally {
             IOUtils.closeQuietly(inputStream);
@@ -128,20 +129,17 @@ public class InfoFrame extends AbstractFrame {
     }
 
     private void loadInfoConfig() {
-        String infoConfigXml = resources.getResourceAsString(config.getInfoConfigPath());
+        String infoConfigPath = config.getInfoConfigPath();
+        if (Strings.isNullOrEmpty(infoConfigPath)) {
+            log.warn("samplebase.infoConfig app property is not defined");
+            return;
+        }
+        String infoConfigXml = resources.getResourceAsString(infoConfigPath);
         if (infoConfigXml == null) {
-            log.warn("Info config not found at " + config.getInfoConfigPath());
+            log.warn("Info config not found at " + infoConfigPath);
             return;
         }
         infoConfigRootEl = Dom4j.readDocument(infoConfigXml).getRootElement();
-        Element el = infoConfigRootEl.element("doc-root");
-        if (el != null) {
-            docRoot = el.attributeValue("value");
-        }
-        el = infoConfigRootEl.element("file-root");
-        if (el != null) {
-            fileRoot = el.attributeValue("value");
-        }
     }
 
     public void showInfo(String windowId) {
@@ -186,9 +184,13 @@ public class InfoFrame extends AbstractFrame {
                             } else {
                                 log.warn("Descriptor not found at " + templatePath);
                             }
+
                         } else {
                             log.warn("Descriptor is not defined for " + windowId);
                         }
+
+                    } else if (el.getName().equals("file")) {
+                        showFile(el.attributeValue("path"));
                     }
                 }
             }
@@ -196,11 +198,11 @@ public class InfoFrame extends AbstractFrame {
     }
 
     private void showDoc(String caption, String page) {
-        showLink(caption, docRoot + page);
+        showLink(caption, config.getDocRoot() + page);
     }
 
     private void showFile(String path) {
-        showLink(path.substring(path.lastIndexOf('/') + 1), fileRoot + path);
+        showLink(path.substring(path.lastIndexOf('/') + 1), config.getFileRoot() + path);
     }
 
     private void showLink(String caption, String url) {
