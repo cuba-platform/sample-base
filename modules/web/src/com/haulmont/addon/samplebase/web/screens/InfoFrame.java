@@ -164,7 +164,7 @@ public class InfoFrame extends AbstractFrame {
 
                     } else if (el.getName().equals("descriptor")) {
                         if (!Strings.isNullOrEmpty(templatePath)) {
-                            showFile(templatePath);
+                            showFile("modules/web/src/" + templatePath);
                         } else {
                             log.warn("Descriptor is not defined for " + windowId);
                         }
@@ -177,7 +177,7 @@ public class InfoFrame extends AbstractFrame {
                                 String className = descrRootEl.attributeValue("class");
                                 if (!Strings.isNullOrEmpty(className)) {
                                     String path = className.replace('.', '/') + ".java";
-                                    showFile(path);
+                                    showFile("modules/web/src/" + path);
                                 } else {
                                     log.warn("'class' attribute not found in " + templatePath);
                                 }
