@@ -1,1 +1,2 @@
-
+insert into SEC_USER (ID, VERSION, CREATE_TS, CREATED_BY, UPDATE_TS, UPDATED_BY, DELETE_TS, DELETED_BY, LOGIN, LOGIN_LC, PASSWORD, NAME, FIRST_NAME, LAST_NAME, MIDDLE_NAME, POSITION_, EMAIL, LANGUAGE_, TIME_ZONE, TIME_ZONE_AUTO, ACTIVE, CHANGE_PASSWORD_AT_LOGON, GROUP_ID, IP_MASK) 
+values ('9b999f7e-face-3904-b36c-f70c060f9937', 1, '2017-08-13 14:24:47', 'anonymous', '2017-08-13 14:24:47', null, null, null, 'user', 'user', '8279161c7670a2015dd5f22e4636f66c14cc1496', null, null, null, null, null, null, 'en', null, null, true, false, '0fa2b1a5-1d68-4d69-9fbd-dff348347f93', null);

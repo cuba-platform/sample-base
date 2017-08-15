@@ -17,10 +17,16 @@
             name="core">
         <artifact appJar="true"
                   name="sample-base-core"/>
+        <artifact classifier="db"
+                  configuration="dbscripts"
+                  ext="zip"
+                  name="sample-base-core"/>
         <property name="cuba.springContextConfig"
                   value="+com/haulmont/addon/samplebase/spring.xml"/>
         <property name="cuba.mainMessagePack"
                   value="+com.haulmont.addon.samplebase.core"/>
+        <property name="cuba.userSessionExpirationTimeoutSec"
+                  value="600"/>
     </module>
     <module blocks="web,desktop"
             dependsOn="global"
@@ -53,6 +59,8 @@
                   value="+com.haulmont.addon.samplebase.web"/>
         <property name="cuba.web.appWindowMode"
                   value="SINGLE"/>
+        <property name="cuba.httpSessionExpirationTimeoutSec"
+                  value="600"/>
     </module>
     <module name="web-themes">
         <artifact name="sample-base-web-themes"/>
