@@ -61,6 +61,8 @@
                   value="SINGLE"/>
         <property name="cuba.httpSessionExpirationTimeoutSec"
                   value="600"/>
+        <property name="cuba.web.linkHandlerActions"
+                  value="open|admin"/>
     </module>
     <module name="web-themes">
         <artifact name="sample-base-web-themes"/>

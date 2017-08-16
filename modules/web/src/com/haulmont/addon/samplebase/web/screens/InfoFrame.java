@@ -1,7 +1,7 @@
 package com.haulmont.addon.samplebase.web.screens;
 
 import com.google.common.base.Strings;
-import com.haulmont.addon.samplebase.SampleConfig;
+import com.haulmont.addon.samplebase.BaseConfig;
 import com.haulmont.bali.util.Dom4j;
 import com.haulmont.cuba.core.global.Metadata;
 import com.haulmont.cuba.core.global.Resources;
@@ -50,7 +50,7 @@ public class InfoFrame extends AbstractFrame {
     private ComponentsFactory componentsFactory;
 
     @Inject
-    private SampleConfig config;
+    private BaseConfig config;
 
     private Element infoConfigRootEl;
 
