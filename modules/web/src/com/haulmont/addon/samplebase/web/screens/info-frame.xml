@@ -5,24 +5,16 @@
         messagesPack="com.haulmont.addon.samplebase.web.screens">
     <dialogMode height="600"
                 width="800"/>
-    <layout>
-        <hbox expand="infoLab_vbox"
-              margin="true,false,false,true"
-              spacing="true"
-              stylename="info-box"
-              width="100%">
-            <label align="MIDDLE_CENTER"
-                   icon="font-icon:INFO_CIRCLE"
-                   stylename="info-icon"/>
-            <vbox id="infoLab_vbox"
-                  expand="infoLab">
-                <label id="infoLab"
-                       value="README.md not found in the root package"
-                       width="100%"/>
-                <flowBox id="linksBox"
-                         height="35px"
-                         spacing="true"/>
-            </vbox>
-        </hbox>
+    <layout margin="true,true,false,true"
+            stylename="info-box">
+        <vbox id="infoLab_vbox"
+              expand="infoLab">
+            <label id="infoLab"
+                   value="README.md not found in the root package"
+                   width="100%"/>
+            <flowBox id="linksBox"
+                     spacing="true"
+                     stylename="info-links"/>
+        </vbox>
     </layout>
 </window>

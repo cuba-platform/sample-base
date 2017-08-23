@@ -18,6 +18,18 @@
         color: #eee;
     }
 
+    .info-box .info-links a {
+        background-color: #eee;
+        color: #006dc9;
+        padding: 4px;
+        text-decoration: none;
+        border-radius: unset;        
+    }
+
+    .info-box .info-links a:hover {
+        background-color: #fff;
+    }
+        
     .v-caption-info-icon .v-icon {
         font-size: 50px;
     } 

@@ -5,6 +5,7 @@ import com.haulmont.addon.samplebase.BaseConfig;
 import com.haulmont.bali.util.Dom4j;
 import com.haulmont.cuba.core.global.Metadata;
 import com.haulmont.cuba.core.global.Resources;
+import com.haulmont.cuba.core.sys.AppContext;
 import com.haulmont.cuba.gui.components.AbstractFrame;
 import com.haulmont.cuba.gui.components.FlowBoxLayout;
 import com.haulmont.cuba.gui.components.Label;
@@ -29,7 +30,9 @@ public class InfoFrame extends AbstractFrame {
 
     private Logger log = LoggerFactory.getLogger(InfoFrame.class);
 
-    private Pattern MD_LINK_PATTERN = Pattern.compile("\\[(.+?)\\]\\((\\S+?)\\)");
+    private static final Pattern VAR_PATTERN = Pattern.compile("\\$\\{(.+?)\\}");
+
+    private static final Pattern MD_LINK_PATTERN = Pattern.compile("\\[(.+?)\\]\\((\\S+?)\\)");
 
     @Inject
     private Metadata metadata;
@@ -58,6 +61,7 @@ public class InfoFrame extends AbstractFrame {
     public void init(Map<String, Object> params) {
         loadReadme();
         loadInfoConfig();
+        showDefaultLinks();
     }
 
     private void loadReadme() {
@@ -207,10 +211,24 @@ public class InfoFrame extends AbstractFrame {
 
     private void showLink(String caption, String url) {
         Link link = componentsFactory.createComponent(Link.class);
-        link.setCaption(caption);
-        link.setUrl(url);
+        link.setCaption(substituteVariables(caption));
+        link.setUrl(substituteVariables(url));
         link.setTarget("_blank");
         linksBox.add(link);
+    }
+
+    private String substituteVariables(String value) {
+        StringBuffer sb = new StringBuffer();
+        Matcher matcher = VAR_PATTERN.matcher(value);
+        while (matcher.find()) {
+            String name = matcher.group(1);
+            String property = AppContext.getProperty(name);
+            if (property != null) {
+                matcher.appendReplacement(sb, property);
+            }
+        }
+        matcher.appendTail(sb);
+        return sb.toString();
     }
 
     public void closeInfo() {
@@ -219,5 +237,25 @@ public class InfoFrame extends AbstractFrame {
 
     private void clearLinks() {
         linksBox.removeAll();
+        showDefaultLinks();
+    }
+
+    private void showDefaultLinks() {
+        if (infoConfigRootEl == null)
+            return;
+        Element defEl = infoConfigRootEl.element("default");
+        if (defEl != null) {
+            for (Element el : Dom4j.elements(defEl)) {
+                if (el.getName().equals("doc")) {
+                    showDoc(el.attributeValue("caption"), el.attributeValue("page"));
+
+                } else if (el.getName().equals("link")) {
+                    showLink(el.attributeValue("caption"), el.attributeValue("url"));
+
+                } else if (el.getName().equals("file")) {
+                    showFile(el.attributeValue("path"));
+                }
+            }
+        }
     }
 }
