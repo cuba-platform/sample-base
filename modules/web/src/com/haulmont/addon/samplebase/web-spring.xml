@@ -12,4 +12,6 @@
 
     <bean id="cuba_LinkHandler" class="com.haulmont.addon.samplebase.web.screens.SampleLinkHandler" scope="prototype"/>
 
+    <bean id="cuba_JmxControl" class="com.haulmont.addon.samplebase.web.BaseJmxControlBean"/>
+
 </beans>

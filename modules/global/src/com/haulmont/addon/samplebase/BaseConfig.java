@@ -31,6 +31,10 @@ public interface BaseConfig extends Config {
 
     @Property("base.permittedScreens")
     @Factory(factory = StringListTypeFactory.class)
-    @Default("aboutWindow")
+    @Default("aboutWindow|jmxConsole|jmxConsoleInspectMbean|jmxConsoleEditAttribute|jmxConsoleOperationResult")
     List<String> getPermittedScreens();
+
+    @Property("base.permittedJmxDomains")
+    @Factory(factory = StringListTypeFactory.class)
+    List<String> getPermittedJmxDomains();
 }
