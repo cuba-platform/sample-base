@@ -161,14 +161,14 @@ public class InfoFrame extends AbstractFrame {
 
                 for (Element el : Dom4j.elements(screenEl)) {
                     if (el.getName().equals("doc")) {
-                        showDoc(el.attributeValue("caption"), el.attributeValue("page"));
+                        showDoc(el.attributeValue("caption"), el.attributeValue("page"), el.attributeValue("style"));
 
                     } else if (el.getName().equals("link")) {
-                        showLink(el.attributeValue("caption"), el.attributeValue("url"));
+                        showLink(el.attributeValue("caption"), el.attributeValue("url"), el.attributeValue("style"));
 
                     } else if (el.getName().equals("descriptor")) {
                         if (!Strings.isNullOrEmpty(templatePath)) {
-                            showFile("modules/web/src/" + templatePath);
+                            showFile("modules/web/src/" + templatePath, el.attributeValue("style"));
                         } else {
                             log.warn("Descriptor is not defined for " + windowId);
                         }
@@ -181,7 +181,7 @@ public class InfoFrame extends AbstractFrame {
                                 String className = descrRootEl.attributeValue("class");
                                 if (!Strings.isNullOrEmpty(className)) {
                                     String path = className.replace('.', '/') + ".java";
-                                    showFile("modules/web/src/" + path);
+                                    showFile("modules/web/src/" + path, el.attributeValue("style"));
                                 } else {
                                     log.warn("'class' attribute not found in " + templatePath);
                                 }
@@ -194,26 +194,28 @@ public class InfoFrame extends AbstractFrame {
                         }
 
                     } else if (el.getName().equals("file")) {
-                        showFile(el.attributeValue("path"));
+                        showFile(el.attributeValue("path"), el.attributeValue("style"));
                     }
                 }
             }
         }
     }
 
-    private void showDoc(String caption, String page) {
-        showLink(caption, config.getDocRoot() + page);
+    private void showDoc(String caption, String page, String style) {
+        showLink(caption, config.getDocRoot() + page, style);
     }
 
-    private void showFile(String path) {
-        showLink(path.substring(path.lastIndexOf('/') + 1), config.getFileRoot() + path);
+    private void showFile(String path, String style) {
+        showLink(path.substring(path.lastIndexOf('/') + 1), config.getFileRoot() + path, style);
     }
 
-    private void showLink(String caption, String url) {
+    private void showLink(String caption, String url, String style) {
         Link link = componentsFactory.createComponent(Link.class);
         link.setCaption(substituteVariables(caption));
         link.setUrl(substituteVariables(url));
         link.setTarget("_blank");
+        if (!Strings.isNullOrEmpty(style))
+            link.setStyleName(style);
         linksBox.add(link);
     }
 
@@ -247,13 +249,13 @@ public class InfoFrame extends AbstractFrame {
         if (defEl != null) {
             for (Element el : Dom4j.elements(defEl)) {
                 if (el.getName().equals("doc")) {
-                    showDoc(el.attributeValue("caption"), el.attributeValue("page"));
+                    showDoc(el.attributeValue("caption"), el.attributeValue("page"), el.attributeValue("style"));
 
                 } else if (el.getName().equals("link")) {
-                    showLink(el.attributeValue("caption"), el.attributeValue("url"));
+                    showLink(el.attributeValue("caption"), el.attributeValue("url"), el.attributeValue("style"));
 
                 } else if (el.getName().equals("file")) {
-                    showFile(el.attributeValue("path"));
+                    showFile(el.attributeValue("path"), el.attributeValue("style"));
                 }
             }
         }

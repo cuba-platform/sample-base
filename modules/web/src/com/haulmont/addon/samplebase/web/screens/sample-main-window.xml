@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="mainMsg://application.caption"
         class="com.haulmont.addon.samplebase.web.screens.SampleMainWindow"
-        extends="/com/haulmont/cuba/web/app/mainwindow/mainwindow.xml"
         messagesPack="com.haulmont.addon.samplebase.web.screens"
-        xmlns:ext="http://schemas.haulmont.com/cuba/window-ext.xsd"
         xmlns:main="http://schemas.haulmont.com/cuba/mainwindow.xsd">
-    <dialogMode height="600"
-                width="800"/>
-    <layout>
+    <layout expand="horizontalWrap">
         <frame id="infoFrame"
-               ext:index="0"
                screen="info-frame"/>
-        <hbox id="titleBar">
-            <embedded id="logoImage"
-                      visible="false"/>
-            <main:userIndicator id="userIndicator"
-                                visible="false"/>
-            <main:timeZoneIndicator id="timeZoneIndicator"
-                                    visible="false"/>
-            <hbox id="mainButtonsBox">
-                <main:logoutButton id="logoutButton"
-                                   visible="false"/>
-            </hbox>
+        <hbox id="horizontalWrap"
+              expand="workArea"
+              stylename="c-sidemenu-layout"
+              width="100%">
+            <vbox id="sideMenuPanel"
+                  height="100%"
+                  margin="false,false,true,false"
+                  spacing="true"
+                  stylename="c-sidemenu-panel"
+                  width="300px">
+                <main:sideMenu id="sideMenu"
+                               height="100%"
+                               width="100%"/>
+            </vbox>
+            <main:workArea id="workArea"
+                           height="100%">
+                <main:initialLayout margin="true"
+                                    spacing="true"/>
+            </main:workArea>
         </hbox>
     </layout>
 </window>

@@ -3,7 +3,7 @@
         <link caption="Project on GitHub" url="${base.projectLink}"/>
     </default>
     <screen id="sec$User.browse">
-        <doc caption="Documentation" page="init_values_in_class.html"/>
+        <doc caption="Documentation" page="init_values_in_class.html" style="highlight"/>
         <link caption="Some link" url="https://doc.cuba-platform.com/manual-6.6/init_values_in_class.html"/>
         <descriptor/>
         <controller/>
