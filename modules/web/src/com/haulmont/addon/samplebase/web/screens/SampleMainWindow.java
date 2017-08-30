@@ -6,7 +6,7 @@ import com.haulmont.cuba.gui.components.mainwindow.SideMenu;
 import javax.inject.Inject;
 import java.util.Map;
 
-public class SampleMainWindow extends AbstractMainWindow implements HasInfoFrame {
+public class SampleMainWindow extends AbstractMainWindow implements HasInfoFrame, HasSideMenu {
 
     @Inject
     private SideMenu sideMenu;
@@ -27,5 +27,10 @@ public class SampleMainWindow extends AbstractMainWindow implements HasInfoFrame
     @Override
     public InfoFrame getInfoFrame() {
         return infoFrame;
+    }
+
+    @Override
+    public SideMenu getSideMenu() {
+        return sideMenu;
     }
 }

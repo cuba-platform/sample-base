@@ -16,7 +16,7 @@
                   margin="false,false,true,false"
                   spacing="true"
                   stylename="c-sidemenu-panel"
-                  width="300px">
+                  width="AUTO">
                 <main:sideMenu id="sideMenu"
                                height="100%"
                                width="100%"/>

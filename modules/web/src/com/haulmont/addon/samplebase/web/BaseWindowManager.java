@@ -2,9 +2,11 @@ package com.haulmont.addon.samplebase.web;
 
 import com.haulmont.addon.samplebase.BaseConfig;
 import com.haulmont.addon.samplebase.web.screens.HasInfoFrame;
+import com.haulmont.addon.samplebase.web.screens.HasSideMenu;
 import com.haulmont.addon.samplebase.web.screens.InfoFrame;
 import com.haulmont.cuba.core.global.AccessDeniedException;
 import com.haulmont.cuba.gui.components.Window;
+import com.haulmont.cuba.gui.components.mainwindow.SideMenu;
 import com.haulmont.cuba.security.entity.PermissionType;
 import com.haulmont.cuba.web.WebWindowManager;
 
@@ -32,6 +34,26 @@ public class BaseWindowManager extends WebWindowManager {
             InfoFrame infoFrame = ((HasInfoFrame) topLevelWindow).getInfoFrame();
             infoFrame.showInfo(window.getId());
         }
+        if (topLevelWindow instanceof HasSideMenu) {
+            SideMenu sideMenu = ((HasSideMenu) topLevelWindow).getSideMenu();
+            SideMenu.MenuItem menuItem = sideMenu.getMenuItem(window.getId());
+            if (menuItem != null) {
+                expandMenuItem(sideMenu.getMenuItems(), menuItem);
+                menuItem.setStyleName("highlight");
+            }
+        }
+    }
+
+    private boolean expandMenuItem(List<SideMenu.MenuItem> items, SideMenu.MenuItem selectedItem) {
+        for (SideMenu.MenuItem item : items) {
+            if (item == selectedItem)
+                return true;
+            if (expandMenuItem(item.getChildren(), selectedItem)) {
+                item.setExpanded(true);
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
@@ -47,6 +69,14 @@ public class BaseWindowManager extends WebWindowManager {
                 infoFrame.showInfo(openWindows.get(openWindows.size() - 2).getId());
             } else {
                 infoFrame.closeInfo();
+            }
+        }
+
+        if (topLevelWindow instanceof HasSideMenu) {
+            SideMenu sideMenu = ((HasSideMenu) topLevelWindow).getSideMenu();
+            SideMenu.MenuItem menuItem = sideMenu.getMenuItem(window.getId());
+            if (menuItem != null) {
+                menuItem.removeStyleName("highlight");
             }
         }
     }
