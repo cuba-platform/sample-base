@@ -123,7 +123,7 @@ public class SampleRoutingDatasource extends AbstractDataSource implements Appli
 
             UUID sessionId = UUID.fromString(entry.getKey());
             UserSessionsAPI userSessions = (UserSessionsAPI) applicationContext.getBean(UserSessionsAPI.NAME);
-            UserSession userSession = userSessions.get(sessionId, false);
+            UserSession userSession = userSessions.get(sessionId);
             if (userSession == null) {
                 log.debug("Session " + entry.getKey() + " does not exist, removing the datasource");
                 DataSource dataSource = entry.getValue();

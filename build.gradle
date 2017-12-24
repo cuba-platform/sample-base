@@ -1,15 +1,15 @@
 
 buildscript {
-    ext.cubaVersion = '6.6.2'
+    ext.cubaVersion = '6.8-SNAPSHOT'
     repositories {
+        mavenLocal()
         maven {
-            url 'https://dl.bintray.com/cuba-platform/main'
+            url 'https://repo.cuba-platform.com/content/groups/work'
+            credentials {
+                username(rootProject.hasProperty('repoUser') ? rootProject['repoUser'] : 'cuba')
+                password(rootProject.hasProperty('repoPass') ? rootProject['repoPass'] : 'cuba123')
+            }
             
-        }
-        mavenCentral()
-        jcenter()
-        maven {
-            url 'http://maven.vaadin.com/vaadin-addons'
         }
     }
     dependencies {
@@ -32,7 +32,7 @@ apply(plugin: 'cuba')
 cuba {
     artifact {
         group = 'com.haulmont.addon.samplebase'
-        version = '1.0.0'
+        version = "1.2.0"
         isSnapshot = false
     }
     tomcat {
@@ -244,7 +244,7 @@ task restart(dependsOn: ['stop', ':sample-base-core:deploy', ':sample-base-web:d
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '3.4'
+    gradleVersion = '4.3.1'
 }
 
 apply from: 'extra.gradle'
