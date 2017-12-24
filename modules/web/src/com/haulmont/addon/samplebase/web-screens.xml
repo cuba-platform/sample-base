@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <screen-config xmlns="http://schemas.haulmont.com/cuba/screens.xsd">
     <include file="com/haulmont/addon/samplebase/screens.xml"/>
-    <screen id="loginWindow"
-            template="com/haulmont/addon/samplebase/web/screens/sample-login-window.xml"/>
     <screen id="mainWindow"
             template="com/haulmont/addon/samplebase/web/screens/sample-main-window.xml"/>
     <screen id="info-frame"
