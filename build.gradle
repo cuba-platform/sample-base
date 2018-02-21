@@ -1,15 +1,15 @@
 
 buildscript {
-    ext.cubaVersion = '6.8-SNAPSHOT'
+    ext.cubaVersion = '6.8.1'
     repositories {
-        mavenLocal()
         maven {
-            url 'https://repo.cuba-platform.com/content/groups/work'
-            credentials {
-                username(rootProject.hasProperty('repoUser') ? rootProject['repoUser'] : 'cuba')
-                password(rootProject.hasProperty('repoPass') ? rootProject['repoPass'] : 'cuba123')
-            }
+            url 'https://dl.bintray.com/cuba-platform/main'
             
+        }
+        mavenCentral()
+        jcenter()
+        maven {
+            url 'http://maven.vaadin.com/vaadin-addons'
         }
     }
     dependencies {
